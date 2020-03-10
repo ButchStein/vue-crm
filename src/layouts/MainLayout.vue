@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="app-main-layout">
+    <Loader v-if="loading"/>
+    <div class="app-main-layout" v-else>
       <Navbar @toggle="isShow = !isShow" />
       <Sidebar v-model="isShow" />
       <main class="app-content" :class="{full: !isShow}">
@@ -22,8 +23,15 @@ import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 export default {
   data: () => ({
-    isShow: true
+    isShow: true,
+    loading: true
   }),
+  async mounted () {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('loadInfo')
+    }
+    this.loading = false
+  },
   components: {
     Navbar, Sidebar
   }
