@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
-      <span class="card-title">Проект</span>
+      <span class="card-title">ЕРП</span>
       <div class="input-field">
         <input
           id="email"

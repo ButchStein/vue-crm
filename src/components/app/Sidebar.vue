@@ -20,8 +20,8 @@ export default {
   props: ['value'],
   data: () => ({
     links: [
-      { title: 'Счета', url: '/', exact: true },
-      { title: 'История', url: '/history' },
+      { title: 'Счета организации', url: '/', exact: true },
+      { title: 'Журнал операций', url: '/journal' },
       // { title: 'Планирование', url: '/planning' },
       { title: 'Новая запись', url: '/record' },
       { title: 'Категории', url: '/categories' }

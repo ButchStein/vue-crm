@@ -7,7 +7,7 @@
     <form class="form">
       <div class="input-field">
         <input id="description" type="text" />
-        <label for="description">Имя</label>
+        <label for="description">Имя пользователя</label>
         <span class="helper-text invalid">name</span>
       </div>
 

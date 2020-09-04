@@ -29,10 +29,10 @@ const routes = [
     component: () => import('../views/Categories.vue')
   },
   {
-    path: '/history',
-    name: 'history',
+    path: '/journal',
+    name: 'journal',
     meta: { layout: 'main' },
-    component: () => import('../views/History.vue')
+    component: () => import('../views/Journal.vue')
   },
   {
     path: '/planning',
