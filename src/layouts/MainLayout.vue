@@ -19,6 +19,7 @@
   </div>
 </template>
 <script>
+import messages from '@/utils/messages'
 import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 export default {
@@ -34,6 +35,16 @@ export default {
   },
   components: {
     Navbar, Sidebar
+  },
+  computed: {
+    error () {
+      return this.$store.getters.getError
+    }
+  },
+  watch: {
+    error (fbError) {
+      this.$error(messages[fbError.code] || 'Видимо что-то случилось...')
+    }
   }
 }
 </script>
