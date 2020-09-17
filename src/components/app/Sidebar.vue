@@ -24,7 +24,9 @@ export default {
       { title: 'Журнал операций', url: '/journal' },
       // { title: 'Планирование', url: '/planning' },
       { title: 'Новая запись', url: '/record' },
-      { title: 'Категории', url: '/categories' }
+      { title: 'Категории', url: '/categories' },
+      { title: 'Банк', url: '/banks' },
+      { title: 'Касса', url: '/cash' }
     ]
   })
 }

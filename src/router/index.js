@@ -54,6 +54,18 @@ const routes = [
     component: () => import('../views/Record.vue')
   },
   {
+    path: '/banks',
+    name: 'banks',
+    meta: { layout: 'main', auth: true },
+    component: () => import('../views/Banks.vue')
+  },
+  {
+    path: '/cash',
+    name: 'cash',
+    meta: { layout: 'main', auth: true },
+    component: () => import('../views/Cash.vue')
+  },
+  {
     path: '/detail/:id',
     name: 'detail',
     meta: { layout: 'main', auth: true },
