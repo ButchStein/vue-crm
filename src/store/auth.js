@@ -15,6 +15,8 @@ export default {
         const id = await dispatch('getUserId')
         await firebase.database().ref(`/users/${id}/info`).set({
           billing: 10000,
+          bankScore: 0,
+          cashScore: 0,
           name
         })
       } catch (e) {

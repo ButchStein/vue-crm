@@ -5,7 +5,7 @@
         <h3>Операции с наличными</h3>
       </div>
       <div class="page-title">
-        <h3>{{score}}: Остаток в кассе</h3>
+        <h3>{{getScore}}: Остаток в кассе</h3>
       </div>
     </div>
 
@@ -57,11 +57,15 @@ import RecordCreate from '@/components/RecordCreate'
 export default {
   data: () => ({
     operations: [],
-    score: 0,
     loading: true
   }),
   components: {
     RecordCreate
+  },
+  computed: {
+    getScore () {
+      return this.$store.getters.info.cashScore
+    }
   },
   async mounted () {
     this.operations = await this.$store.dispatch('fetchCashRecords')

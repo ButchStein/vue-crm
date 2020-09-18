@@ -119,10 +119,11 @@ export default {
             category: this.category,
             date: new Date().toLocaleString()
           })
-          const billing = this.typeOperation === 'income'
-            ? this.info.billing + this.amount
-            : this.info.billing - this.amount
-          await this.$store.dispatch('updateInfo', { billing })
+          const cashScore = this.typeOperation === 'income'
+            ? this.info.cashScore + this.amount
+            : this.info.cashScore - this.amount
+          await this.$store.dispatch('updateInfo', { cashScore })
+          await this.$store.dispatch('fetchCashRecords')
           this.$message('Операция успешно создана!')
           this.$v.$reset()
           this.amount = 1
@@ -132,6 +133,7 @@ export default {
       } else {
         this.$message(`Не хватает средств для операции (${this.amount - this.info.billing}) р`)
       }
+      this.operations = await this.$store.dispatch('fetchCashRecords')
     }
   }
 }
