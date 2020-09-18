@@ -87,9 +87,9 @@ export default {
     this.operations = await this.$store.dispatch('fetchCashRecords')
     this.loading = false
 
-    // if (this.categories.length) {
-    //   this.category = this.categories[0].id
-    // }
+    if (this.categories.length) {
+      this.category = this.categories[0].id
+    }
     if (this.operations.length) {
       this.operation = this.operations[0].id
     }
@@ -111,7 +111,7 @@ export default {
       }
       if (this.canCreateOperation) {
         try {
-          await this.$store.dispatch('createCashOperation', {
+          const operation = await this.$store.dispatch('createCashOperation', {
             operationId: this.operation,
             amount: this.amount,
             description: this.description,
@@ -123,17 +123,16 @@ export default {
             ? this.info.cashScore + this.amount
             : this.info.cashScore - this.amount
           await this.$store.dispatch('updateInfo', { cashScore })
-          await this.$store.dispatch('fetchCashRecords')
           this.$message('Операция успешно создана!')
+          this.$emit('created', operation)
           this.$v.$reset()
           this.amount = 1
           this.description = ''
           this.category = null
         } catch (e) {}
       } else {
-        this.$message(`Не хватает средств для операции (${this.amount - this.info.billing}) р`)
+        this.$message(`Не хватает средств для операции (${this.amount - this.info.cashScore}) р`)
       }
-      this.operations = await this.$store.dispatch('fetchCashRecords')
     }
   }
 }

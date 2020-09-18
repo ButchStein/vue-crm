@@ -48,7 +48,7 @@
       </table>
     </section>
     <section class="mt-5">
-      <RecordCreate />
+      <RecordCreate @created="addNewRecord"/>
     </section>
   </div>
 </template>
@@ -70,6 +70,11 @@ export default {
   async mounted () {
     this.operations = await this.$store.dispatch('fetchCashRecords')
     this.loading = false
+  },
+  methods: {
+    async addNewRecord () {
+      this.operations = await this.$store.dispatch('fetchCashRecords')
+    }
   }
 }
 </script>
