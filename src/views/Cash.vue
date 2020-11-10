@@ -12,10 +12,12 @@
     <!-- <div class="history-chart">
       <canvas></canvas>
     </div>-->
-
+    <section class="mb-3">
+      <RecordCreate @created="addNewRecord"/>
+    </section>
     <section>
       <table>
-        <thead>
+        <thead class="sub-header">
           <tr>
             <th>#</th>
             <th>Дата</th>
@@ -23,13 +25,13 @@
             <th>Наименование платежа</th>
             <th>Тип</th>
             <th>Категория</th>
-            <th>Открыть</th>
+            <th>Действия</th>
           </tr>
         </thead>
 
         <tbody>
           <tr v-for="o of operations" :key="o.id">
-            <td>1</td>
+            <td></td>
             <td>{{o.date}}</td>
             <td>{{o.amount}}</td>
             <td>{{o.description}}</td>
@@ -42,13 +44,13 @@
               <button class="btn-small btn">
                 <i class="material-icons">open_in_new</i>
               </button>
+              <button class="btn-small btn ml-1 red">
+                <i class="material-icons">delete</i>
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
-    </section>
-    <section class="mt-5">
-      <RecordCreate @created="addNewRecord"/>
     </section>
   </div>
 </template>
@@ -69,11 +71,13 @@ export default {
   },
   async mounted () {
     this.operations = await this.$store.dispatch('fetchCashRecords')
+    this.operations = await this.operations.reverse(self)
     this.loading = false
   },
   methods: {
     async addNewRecord () {
       this.operations = await this.$store.dispatch('fetchCashRecords')
+      this.operations = await this.operations.reverse(self)
     }
   }
 }
@@ -83,7 +87,13 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.mt-5 {
-  margin-top: 5rem;
+.mb-3 {
+  margin-bottom: 3rem;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.sub-header {
+  background-color:#ffa726;
 }
 </style>
